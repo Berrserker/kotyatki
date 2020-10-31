@@ -1,0 +1,11 @@
+{
+	"port":4900,
+	"db_name":"kotiki",
+	"path_to_views":"./views/",
+	"path_to_img":"./images/",
+	"path_to_static":"./static",
+	"path_to_files":"./files/",
+	"https_enable":false,
+	"path_to_sert":"./sert/",
+	"secret":"sadzxfcghvbjknml",
+}
