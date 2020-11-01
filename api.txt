@@ -1,0 +1,160 @@
+http://46.173.216.27/
+
+/auth +POST
+[]
+in body raw/json
+{
+    "email": "@email",
+    "password": "Password"
+}
+out
+{
+	200
+		{
+	    "message": "Invalid login credentials. Please try again",
+	    "status": 1
+		}
+	200 
+		{
+	    "account": {
+	        "email": "",
+	        "password": "",
+	        "adress": "",
+	        "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG1pbiI6dHJ1ZSwiZXhwIjoxNjA0MTc1ODE2LCJsb2dpbiI6IkBlbWFpbCJ9.XvWjdBUn_vf6Uc3yGRFBitXZcOmNHuqAqAkfLKSw0Xk"
+	    },
+	    "message": "Logged In",
+	    "status": 0
+		}
+}
+
+/get_voc +GET
+[BearerToken]
+in
+{}
+out
+{
+	401
+		Token is expired
+	200 
+		{
+		    "message": "Query is ok",
+		    "status": 0,
+		    "vocs": [
+		        {
+		            "Login": "@email",
+		            "Name": "list",
+		            "Voc": [
+		                "gender",
+		                "priuti",
+		                "vid",
+		                "poroda",
+		                "exporg",
+		                "furr",
+		                "color",
+		                "ears",
+		                "tale"
+		            ]
+		        }
+		    ]
+		}
+}
+
+/get_voc +POST
+[BearerToken]
+in body raw/json
+{
+	"request": ["exporg", "priuti", "vid"]
+}
+out
+{
+	401
+		Token is expired
+	200 
+		{
+		    "message": "Invalid input",
+		    "status": 1
+		}
+	200 
+		{
+		    "message": "Query is ok",
+		    "status": 0,
+		    "vocs": [
+		        {
+		            "Login": "@email",
+		            "Name": "exporg",
+		            "Voc": [
+		                "ГБУ «Автомобильные дороги САО»",
+		                "ГБУ «Автомобильные дороги СВАО»",
+		                "ГБУ «Автомобильные дороги ВАО»",
+		                "ГБУ «Автомобильные дороги ЮАО»",
+		                "ГБУ «Автомобильные дороги ЮЗАО»",
+		                "ГБУ «Автомобильные дороги ЮВАО»",
+		                "ГБУ «Автомобильные дороги ЗАО»",
+		                "ГБУ «ДоринвестBLO»"
+		            ]
+		        },
+		        {
+		            "Login": "@mail",
+		            "Name": "priuti",
+		            "Voc": [
+		                "Приют «Щербинка»;Префектура ЮЗАО (ГБУ «Автомобильные дороги ЮЗАО»);г.Москва, ул.Брусилова, вл.32, стр.1-5 ;;",
+		                "Приют «Некрасовка»;Префектура ЮВАО (ГБУ «Автомобильные дороги ЮВАО»);г.Москва, ул.2-я Вольская, вл.17 стр.3;+7 (495) 514-49-02;",
+		                "Приют «Печатники»;Префектура ЮВАО (ГБУ «Автомобильные дороги ЮВАО»);г.Москва, Проектируемый проезд №5112, вл.2\\1;;"
+		            ]
+		        },
+		        {
+		            "Login": "@mail",
+		            "Name": "vid",
+		            "Voc": [
+		                "dog",
+		                "cat"
+		            ]
+		        }
+		    ]
+		}
+}
+
+/set_voc +POST
+[BearerToken]
+in body raw/json
+{
+    "login":"@email",
+    "Voc": [
+        {
+            "Login": "@email",
+            "Name": "exporg",
+            "Voc": [
+                "ГБУ «Автомобильные дороги САО»",
+                "ГБУ «Автомобильные дороги СВАО»",
+                "ГБУ «Автомобильные дороги ВАО»",
+                "ГБУ «Автомобильные дороги ЮАО»",
+                "ГБУ «Автомобильные дороги ЮЗАО»",
+                "ГБУ «Автомобильные дороги ЮВАО»",
+                "ГБУ «Автомобильные дороги ЗАО»",
+                "ГБУ «ДоринвестBLO»"
+            ]
+        },
+        {
+            "Login": "@mail",
+            "Name": "gender",
+            "Voc": [
+                "male", "female"
+            ]
+        }
+        ]
+}
+out
+{
+	401
+		Token is expired
+	200 
+		{
+		   "message": "Updated",
+		   "status": 0
+		}
+	200 
+		{
+		    "message": "Invalid input",
+		    "status": 1
+		}
+}

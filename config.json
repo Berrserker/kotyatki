@@ -8,4 +8,7 @@
 	"https_enable":false,
 	"path_to_sert":"./sert/",
 	"secret":"sadzxfcghvbjknml",
+	"parse_file":true,
+	"csv_path":"Da.csv",
+	"delimeter":";"
 }
